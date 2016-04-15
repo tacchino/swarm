@@ -88,7 +88,7 @@ module SwarmCookbook
     end
 
     def build_kv_url
-      discovery = node['swarm']['discovery']['host'] || search(:node, node['swarm']['discovery']['query']).first['ipaddress']
+      discovery = node['swarm']['discovery']['host'] || search(:node, node['swarm']['discovery']['query']).first['ipaddress'] # ~FC001 ~FC003
       "#{discovery}/#{node['swarm']['discovery']['path']}"
     end
   end
