@@ -19,3 +19,12 @@ suites:
     run_list:
       - recipe[swarm::service]
     attributes:
+
+  - name: manager
+    run_list:
+      - recipe[swarm::service]
+      - recipe[swarm::manager]
+    attributes:
+      swarm:
+        discovery:
+          token: fba21ffa43f1e13ef799d293eb74979a

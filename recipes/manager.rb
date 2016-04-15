@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swarm
-# Recipe:: default
+# Recipe:: manager
 #
 # Copyright 2016 Brent Walker
 #
@@ -15,9 +15,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+::Chef::Recipe.send(:include, SwarmCookbook::Helpers)
 
-docker_image 'swarm' do
+include_recipe 'swarm::default'
+
+cmd = build_manager_cmd
+docker_container 'swarm-manager' do
+  repo 'swarm'
   tag node['swarm']['swarm_version']
-  read_timeout node['swarm']['image']['read_timeout']
-  action :pull_if_missing
+  port "#{node['swarm']['manager']['port']}:#{node['swarm']['manager']['port']}"
+  command cmd
+  restart_policy node['swarm']['manager']['restart_policy']
+  action :run
 end
