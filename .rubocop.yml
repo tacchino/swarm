@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - spec/**/*
+    - test/**/*
+    - metadata.rb
+    - Policyfile.rb
+    - Guardfile
+
+Metrics/LineLength:
+  Max: 160

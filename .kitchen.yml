@@ -11,6 +11,7 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[swarm::service]
       - recipe[swarm::default]
     attributes:
 

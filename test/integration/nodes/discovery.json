@@ -1,0 +1,7 @@
+{
+  "id": "swarm_discovery",
+  "run_list": ["role[swarm-discovery]"],
+  "automatic": {
+    "ipaddress": "10.1.1.2"
+  }
+}

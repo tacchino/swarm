@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe 'swarm::default' do
-  # Serverspec examples can be found at
-  # http://serverspec.org/resource_types.html
-  it 'does something' do
-    skip 'Replace this with meaningful tests'
+  it 'pulls the swarm image' do
+    expect(docker_image('swarm:latest')).to exist
   end
 end
