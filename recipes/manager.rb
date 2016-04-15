@@ -25,6 +25,6 @@ docker_container 'swarm-manager' do
   tag node['swarm']['swarm_version']
   port "#{node['swarm']['manager']['port']}:#{node['swarm']['manager']['port']}"
   command cmd
-  restart_policy node['swarm']['manager']['restart_policy']
+  restart_policy node['swarm']['restart_policy']
   action :run
 end

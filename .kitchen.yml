@@ -28,3 +28,12 @@ suites:
       swarm:
         discovery:
           token: fba21ffa43f1e13ef799d293eb74979a
+
+  - name: worker
+    run_list:
+      - recipe[swarm::service]
+      - recipe[swarm::worker]
+    attributes:
+      swarm:
+        discovery:
+          token: fba21ffa43f1e13ef799d293eb74979a
