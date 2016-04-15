@@ -6,6 +6,6 @@ description 'Installs/Configures swarm'
 long_description 'Installs/Configures swarm'
 issues_url 'https://github.com/tacchino/swarm/issues'
 source_url 'https://github.com/tacchino/swarm'
-version '0.1.0'
+version '0.1.1'
 
 depends 'docker', '~> 2.6'
