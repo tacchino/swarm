@@ -11,4 +11,5 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-foodcritic'
   gem 'guard-rubocop'
+  gem 'docker-api'
 end
