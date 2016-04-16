@@ -41,6 +41,7 @@ default['swarm']['manager']['cluster_options'] = []
 # Specified as a Hash of argument names to values
 default['swarm']['manager']['additional_options'] = {}
 
+default['swarm']['worker']['advertise'] = node['ipaddress']
 default['swarm']['worker']['ttl'] = nil
 default['swarm']['worker']['heartbeat'] = nil
 default['swarm']['worker']['delay'] = nil

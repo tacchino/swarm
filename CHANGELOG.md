@@ -1,5 +1,7 @@
 ## 0.1.2
-Additional testing and documentation
+* Add attribute for worker advertise address
+* Bind service to 0.0.0.0:2376
+* Additional testing and documentation
 
 ## 0.1.0
 Inital release

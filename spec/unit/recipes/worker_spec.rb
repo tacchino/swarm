@@ -82,6 +82,27 @@ describe 'swarm::worker' do
     end
   end
 
+  context 'When specifying advertise address' do
+    let(:chef_run) do
+      runner = ChefSpec::SoloRunner.new do |node|
+        node.automatic['ipaddress'] = '10.1.1.1'
+        node.set['swarm']['discovery']['token'] = 'fba21ffa43f1e13ef799d293eb74979a'
+
+        node.set['swarm']['worker']['advertise'] = '10.2.2.2'
+      end
+
+      runner.converge(described_recipe)
+    end
+
+    it 'runs the swarm worker container' do
+      expect(chef_run).to run_docker_container('swarm-worker').with(
+        tag: 'latest',
+        restart_policy: 'on-failure',
+        command: 'join --advertise 10.2.2.2:2376 token://fba21ffa43f1e13ef799d293eb74979a'
+      )
+    end
+  end
+
   context 'When specifying discovery options' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new do |node|

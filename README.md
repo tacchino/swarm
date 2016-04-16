@@ -39,6 +39,7 @@ See Docker docs for explanation of Swarm arguments: https://docs.docker.com/swar
 |['swarm']['manager']['cluster_driver']|'swarm'||
 |['swarm']['manager']['cluster_options']|[]|Cluster driver options| 
 |['swarm']['manager']['additional_options']|{}|Hook for adding additional arguments to the swarm manage command. Specified as a Hash of argument names to values|
+|['swarm']['worker']['advertise']|node['ipaddress']||
 |['swarm']['worker']['ttl']|nil||
 |['swarm']['worker']['heartbeat']|nil||
 |['swarm']['worker']['delay']|nil|| 
