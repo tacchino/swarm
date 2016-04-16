@@ -1,3 +1,5 @@
+sudo: false
+
 addons:
   apt:
     sources:
@@ -5,10 +7,15 @@ addons:
     packages:
       - chefdk
 
+install: echo "skip bundle install"
+
 before_script:
   - eval "$(/opt/chefdk/bin/chef shell-init bash)"
 
 script:
+  - /opt/chefdk/embedded/bin/chef --version
+  - /opt/chefdk/embedded/bin/rubocop --version
   - /opt/chefdk/embedded/bin/rubocop
-  - /opt/chefdk/embedded/bin/bundle install
-  - /opt/chefdk/embedded/bin/bundle exec rspec spec
+  - /opt/chefdk/embedded/bin/foodcritic --version
+  - /opt/chefdk/embedded/bin/foodcritic . --exclude spec -f any
+  - /opt/chefdk/embedded/bin/rspec spec
