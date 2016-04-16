@@ -1,26 +1,27 @@
-# swarm
+# Swarm Cookbook
 Chef cookbook for configuring Docker Swarm nodes.
 
-#### Recipes
-##### default.rb
+## Recipes
+### default.rb
 Pulls the swarm image only. See manager.rb and worker.rb
 
-##### manager.rb
+### manager.rb
 Runs a swarm container in "manage" mode
 
-##### worker.rb
+### worker.rb
 Runs a swarm container in "join" mode
 
-##### service.rb
+### service.rb
 Uses the Docker cookbook resource to ensure that Docker is installed and running
 The recipe uses minimal configuration, it is expected that most cookbook users will set up
 Docker directly
 
 #### Attributes
+See Docker docs for explanation of Swarm arguments: https://docs.docker.com/swarm/overview/
 |Attribute|Default Value|Description|
 ----------|-------------|------------|
-|['swarm']['swarm_version']|'latest'||
-|['swarm']['image']['read_timeout']|180|| 
+|['swarm']['swarm_version']|'latest'|Version of the Swarm container to use|
+|['swarm']['image']['read_timeout']|180|Timeout for image pull| 
 |['swarm']['discovery']['provider']|'token'|Swarm discovery provider type to use. Valid values are token, consul, etcd, zk, file|
 |['swarm']['discovery']['token']|nil|Discovery token to use, only used with provider "token"|
 |['swarm']['discovery']['file_path']|nil|Path to discovery file. Only used for provider "file"| 
@@ -45,14 +46,14 @@ Docker directly
 |['swarm']['worker']['additional_options']|{}|Hook for adding additional arguments to the swarm join command. Specified as a Hash of argument names to values|
 
 
-#### Usage
+## Usage
 To create a managing node include swarm::manager in your node's run list
 To create a worker node include swarm::worker in your node's run list
 
 Both of the above recipes assume that the Docker engine will be installed and running. 
 swarm::service can be included if the engine is not managed through some other cookbook
 
-#### License
+## License
 ```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

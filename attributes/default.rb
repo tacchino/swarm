@@ -1,4 +1,6 @@
+# Version of the Swarm container to use
 default['swarm']['swarm_version'] = 'latest'
+# Timeout for image pull
 default['swarm']['image']['read_timeout'] = 180
 
 # Swarm discovery provider type to use. Valid values are
