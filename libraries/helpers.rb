@@ -3,6 +3,8 @@ module SwarmCookbook
   module Helpers
     include Chef::Mixin::ShellOut
 
+    # rubocop:disable Metrics/AbcSize
+
     # Build discovery URL using node attributes
     # @return [String]
     def build_discovery_url
