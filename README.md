@@ -12,9 +12,7 @@ Runs a swarm container in "manage" mode
 Runs a swarm container in "join" mode
 
 ### service.rb
-Uses the Docker cookbook resource to ensure that Docker is installed and running
-The recipe uses minimal configuration, it is expected that most cookbook users will set up
-Docker directly
+Uses the Docker cookbook resource to ensure that the Docker engine is installed and running
 
 #### Attributes
 See Docker docs for explanation of Swarm arguments: https://docs.docker.com/swarm/overview/
@@ -41,6 +39,7 @@ See Docker docs for explanation of Swarm arguments: https://docs.docker.com/swar
 |['swarm']['manager']['cluster_driver']|'swarm'||
 |['swarm']['manager']['cluster_options']|[]|Cluster driver options| 
 |['swarm']['manager']['additional_options']|{}|Hook for adding additional arguments to the swarm manage command. Specified as a Hash of argument names to values|
+|['swarm']['worker']['advertise']|node['ipaddress']||
 |['swarm']['worker']['ttl']|nil||
 |['swarm']['worker']['heartbeat']|nil||
 |['swarm']['worker']['delay']|nil|| 
@@ -53,6 +52,16 @@ To create a worker node include swarm::worker in your node's run list
 
 Both of the above recipes assume that the Docker engine will be installed and running. 
 swarm::service can be included if the engine is not managed through some other cookbook
+
+#### Engine
+A simple recipe is provided for installing and running the Docker engine. The recipe makes use of the `docker\_service`
+resource provided by the [Docker Cookbook](https://github.com/chef-cookbooks/docker). For advanced configuration
+you can set up the engine within your own wrapper cookbook and only use the manager and worker recipes here
+
+#### TLS
+This cookbook makes no effort to manage certificates, instead the certs should be placed on the instance by your wrapper
+cookbook. To enable TLS validation for your Swarm the appropriate arguments should be added to 
+['swarm']['manager']['additional_options']. See [Docker's documentation](https://docs.docker.com/swarm/configure-tls/) for configuration details
 
 ## License
 ```

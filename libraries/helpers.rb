@@ -42,7 +42,7 @@ module SwarmCookbook
     # Build the full swarm command for launching a worker container
     # @return [String]
     def build_worker_cmd
-      cmd = "join --advertise #{node['ipaddress']}:2376"
+      cmd = "join --advertise #{node['swarm']['worker']['advertise']}:2376"
       cmd << " --heartbeat #{node['swarm']['worker']['heartbeat']}" if node['swarm']['worker']['heartbeat']
       cmd << " --ttl #{node['swarm']['worker']['ttl']}" if node['swarm']['worker']['ttl']
 
