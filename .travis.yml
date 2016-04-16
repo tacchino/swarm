@@ -1,10 +1,9 @@
 addons:
-  addons:
-    apt:
-      sources:
-        - chef-current-precise
-      packages:
-        - chefdk
+  apt:
+    sources:
+      - chef-current-precise
+    packages:
+      - chefdk
 
 before_script:
   - eval "$(/opt/chefdk/bin/chef shell-init bash)"
