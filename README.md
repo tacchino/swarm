@@ -18,6 +18,7 @@ Docker directly
 
 #### Attributes
 See Docker docs for explanation of Swarm arguments: https://docs.docker.com/swarm/overview/
+
 |Attribute|Default Value|Description|
 ----------|-------------|------------|
 |['swarm']['swarm_version']|'latest'|Version of the Swarm container to use|
