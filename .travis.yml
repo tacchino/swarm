@@ -1,0 +1,15 @@
+addons:
+  addons:
+    apt:
+      sources:
+        - chef-current-precise
+      packages:
+        - chefdk
+
+before_script:
+  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+
+script:
+  - /opt/chefdk/embedded/bin/rubocop
+  - /opt/chefdk/embedded/bin/bundle install
+  - /opt/chefdk/embedded/bin/bundle exec rspec spec
