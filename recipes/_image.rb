@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swarm
-# Recipe:: default
+# Recipe:: _image
 #
 # Copyright 2016 Brent Walker
 #

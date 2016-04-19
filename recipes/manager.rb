@@ -17,7 +17,7 @@
 # limitations under the License.
 ::Chef::Recipe.send(:include, SwarmCookbook::Helpers)
 
-include_recipe 'swarm::default'
+include_recipe 'swarm::_image'
 
 cmd = build_manager_cmd
 docker_container 'swarm-manager' do
