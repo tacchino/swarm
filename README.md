@@ -2,9 +2,6 @@
 Chef cookbook for configuring Docker Swarm nodes.
 
 ## Recipes
-### default.rb
-Pulls the swarm image only. See manager.rb and worker.rb
-
 ### manager.rb
 Runs a swarm container in "manage" mode
 
@@ -13,6 +10,9 @@ Runs a swarm container in "join" mode
 
 ### service.rb
 Uses the Docker cookbook resource to ensure that the Docker engine is installed and running
+
+### _image.rb
+Pulls the swarm image only, not intended for direct use. See manager.rb and worker.rb
 
 #### Attributes
 See Docker docs for explanation of Swarm arguments: https://docs.docker.com/swarm/overview/

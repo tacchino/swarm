@@ -4,7 +4,6 @@ gem 'berkshelf'
 
 group :development do
   gem 'test-kitchen'
-  gem 'kitchen-ec2'
   gem 'foodcritic'
   gem 'chefspec'
   gem 'guard'

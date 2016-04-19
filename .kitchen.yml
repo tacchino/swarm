@@ -9,10 +9,10 @@ platforms:
   - name: ubuntu-14.04
 
 suites:
-  - name: default
+  - name: image
     run_list:
       - recipe[swarm::service]
-      - recipe[swarm::default]
+      - recipe[swarm::_image]
     attributes:
 
   - name: service

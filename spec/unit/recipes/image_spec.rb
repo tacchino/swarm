@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swarm
-# Spec:: default
+# Spec:: image
 #
 # Copyright 2016 Brent Walker
 #
@@ -18,11 +18,7 @@
 
 require 'spec_helper'
 
-describe 'swarm::default' do
-  before do
-    stub_search(:node, 'role:swarm-discovery AND chef_environment:_default').and_return([{ipaddress: '10.1.1.1'}])
-  end
-
+describe 'swarm::_image' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new
