@@ -14,6 +14,10 @@ default['swarm']['discovery']['file_path'] = nil
 # If not specified then a search will be run instead
 # Only used with provider "consul", "etcd" or "zk"
 default['swarm']['discovery']['host'] = nil
+# Specify a port for your discovery service. This can be used in combination with
+# ['swarm']['discovery']['host'] or with search. It need not be used at all if your
+# discovery provider is running on standard ports that can be inferrred from the protocol
+default['swarm']['discovery']['port'] = nil
 # When a discovery host is not specified the cookbook will attempt to find a discovery
 # provider using the specified query
 # Only used with provider "consul", "etcd" or "zk"

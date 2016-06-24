@@ -42,6 +42,68 @@ describe 'swarm::manager' do
     end
   end
 
+  context 'When using a KV discovery and a custom port' do
+    before do
+      stub_search("node", "role:swarm-discovery AND chef_environment:_default").and_return([{ipaddress: '10.2.2.2'}])
+    end
+
+    let(:chef_run) do
+      runner = ChefSpec::SoloRunner.new do |node|
+        node.automatic['ipaddress'] = '10.1.1.1'
+        node.set['swarm']['discovery']['provider'] = 'etcd'
+        node.set['swarm']['discovery']['path'] = 'swarm'
+        node.set['swarm']['discovery']['port'] = '8000'
+      end
+
+      runner.converge(described_recipe)
+    end
+
+    it 'runs the swarm manager container' do
+      expect(chef_run).to run_docker_container('swarm-manager').with(
+        command: 'manage --host 0.0.0.0:3376 --strategy spread --advertise 10.1.1.1 --cluster-driver swarm etcd://10.2.2.2:8000/swarm'
+      )
+    end
+  end
+
+  context 'When discovery host is specified' do
+    let(:chef_run) do
+      runner = ChefSpec::SoloRunner.new do |node|
+        node.automatic['ipaddress'] = '10.1.1.1'
+        node.set['swarm']['discovery']['provider'] = 'etcd'
+        node.set['swarm']['discovery']['host'] = '10.3.3.3'
+        node.set['swarm']['discovery']['path'] = 'swarm'
+      end
+
+      runner.converge(described_recipe)
+    end
+
+    it 'runs the swarm manager container' do
+      expect(chef_run).to run_docker_container('swarm-manager').with(
+        command: 'manage --host 0.0.0.0:3376 --strategy spread --advertise 10.1.1.1 --cluster-driver swarm etcd://10.3.3.3/swarm'
+      )
+    end
+  end
+
+  context 'When discovery host and port are specified' do
+    let(:chef_run) do
+      runner = ChefSpec::SoloRunner.new do |node|
+        node.automatic['ipaddress'] = '10.1.1.1'
+        node.set['swarm']['discovery']['provider'] = 'etcd'
+        node.set['swarm']['discovery']['host'] = '10.3.3.3'
+        node.set['swarm']['discovery']['path'] = 'swarm'
+        node.set['swarm']['discovery']['port'] = '8000'
+      end
+
+      runner.converge(described_recipe)
+    end
+
+    it 'runs the swarm manager container' do
+      expect(chef_run).to run_docker_container('swarm-manager').with(
+        command: 'manage --host 0.0.0.0:3376 --strategy spread --advertise 10.1.1.1 --cluster-driver swarm etcd://10.3.3.3:8000/swarm'
+      )
+    end
+  end
+
   context 'When using file discovery' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new do |node|

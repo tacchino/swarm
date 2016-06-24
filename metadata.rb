@@ -6,7 +6,7 @@ description 'Installs/Configures Docker Swarm'
 long_description 'Configures nodes to run Docker Swarm'
 issues_url 'https://github.com/tacchino/swarm/issues'
 source_url 'https://github.com/tacchino/swarm'
-version '0.2.0'
+version '0.2.1'
 supports 'ubuntu'
 
 depends 'docker', '~> 2.6'
