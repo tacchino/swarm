@@ -1,3 +1,6 @@
+## 0.2.1
+* Allow discovery port to be specified via attribute
+
 ## 0.2.0
 * Refactor image pull into it's own recipe 
 

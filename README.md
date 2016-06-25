@@ -25,6 +25,7 @@ See Docker docs for explanation of Swarm arguments: https://docs.docker.com/swar
 |['swarm']['discovery']['token']|nil|Discovery token to use, only used with provider "token"|
 |['swarm']['discovery']['file_path']|nil|Path to discovery file. Only used for provider "file"| 
 |['swarm']['discovery']['host']|nil|Specify a host running the discovery service for the Swarm cluster. If not specified then a search will be run instead. Only used with provider "consul", "etcd" or "zk"| 
+|['swarm']['discovery']['port']|nil|Specify a port for your discovery service. This can be used in combination with ['swarm']['discovery']['host'] or with search. It need not be used at all if your discovery provider is running on standard ports that can be inferrred from the protocol| 
 |['swarm']['discovery']['query']|"role:swarm-discovery AND chef_environment:#{node.chef_environment}"|When a discovery host is not specified the cookbook will attempt to find a discovery provider using the specified query. Only used with provider "consul", "etcd" or "zk"|
 |['swarm']['discovery']['path']|nil|Path to append to the end of the key value store URL. Only used with provider "consul", "etcd" or "zk"|
 |['swarm']['restart_policy']|'on-failure'|Swarm container restart policy|
